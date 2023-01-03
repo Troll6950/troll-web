@@ -1,0 +1,95 @@
+
+body {
+    font-family: 'Open Sans', sans-serif;
+    color: #ffffff;
+    background-color: #242424;
+    padding-left: 40px;
+    padding-right: 40px;
+    }
+
+::-webkit-scrollbar {
+    width: 20px;
+    }
+
+::-webkit-scrollbar-thumb {
+    background-color: #007cff;
+    }
+
+::-webkit-scrollbar-track {
+    background-color: #242424;
+    }
+
+::-webkit-scrollbar-track-piece {
+    background-color: #202020;
+    }
+
+::-webkit-scrollbar-button {
+    background-color: #242424;
+    }
+
+::selection {
+    background: #007cff;
+    color: black;
+    }
+
+br {
+    user-select: none;
+    }
+
+p {
+    font-size: 3vmin;
+    }
+
+a:hover {
+    text-decoration: underline;
+    }
+
+.al {
+    color: black;
+    font-size: 20px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.h1 {
+    font-size: 50px;
+    text-align: center;
+    text-decoration: underline;
+}
+
+.p1 {
+    font-size: 14px;
+    text-align: center;
+}
+
+.div1 {
+    background-color: red;
+    width: 77px;
+    border: solid black;
+    padding: 20px;
+    margin: 20px;
+}
+
+.div2 {
+    background-color: #5865F2;
+    width: 77px;
+    border: solid black;
+    padding: 20px;
+    margin: 20px;
+}
+
+.div3 {
+    background-color: white;
+    width: 77px;
+    border: solid black;
+    padding: 20px;
+    margin: 20px;
+}
+
+.div4 {
+    background-color: #1D9BF0;
+    width: 77px;
+    border: solid black;
+    padding: 20px;
+    margin: 20px;
+}
