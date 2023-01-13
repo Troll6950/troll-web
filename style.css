@@ -128,3 +128,17 @@ a {
 a:hover {
     text-decoration: none;
 }
+
+.all {
+    color: white;
+    font-size: 20px;
+    text-decoration: overline;
+    text-decoration-color: #5865F2;
+    font-weight: bold;
+    text-align: center;
+}
+
+.all:hover {
+    text-decoration: underline;
+    text-decoration-color: #5865F2;
+}
