@@ -40,6 +40,24 @@
       align-items: center;
     }
 
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    @keyframes fadeOut {
+      from {
+        opacity: 1;
+      }
+      to {
+        opacity: 0;
+      }
+    }
+
     .popup {
       padding: 20px;
       background-color: black;
@@ -47,6 +65,7 @@
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
       border-radius: 5px;
       text-align: center;
+      animation: fadeIn 0.6s ease-in-out;
     }
 
     .popup-trigger {
@@ -81,6 +100,20 @@
     #popup-close:hover {
       background-color: #555;
       transform: scale(1.05);
+    }
+
+    .popup-closing {
+      animation: fadeOut 1.9s ease;
+    }
+
+    @keyframes fadeOut {
+      0% {
+        opacity: 1;
+      }
+      100% {
+        opacity: 0;
+        display: none;
+      }
     }
 
     /* Style the default audio player controls */
@@ -175,7 +208,7 @@ const tracks = [
   { title: 'Adolf Hitler x Babydoll x The perfect girl', src: './music/ah_x_bxtpg.mp3', imgSrc: './img/bxtpg.jpg', imgLink: 'https://www.gettyimages.de/fotos/adolf-hitler' },
   { title: 'Adolf Hitler x In Essence', src: './music/ah_x_ie.mp3', imgSrc: './img/ie.jpg', imgLink: 'https://www.gettyimages.de/fotos/adolf-hitler' },
   { title: 'Adolf Hitler x Kletka', src: './music/ah_x_kletka.mp3', imgSrc: './img/kletka.jpg', imgLink: 'https://www.gettyimages.de/fotos/adolf-hitler' },
-  { title: 'Adolf Hitler x Kletka', src: './music/ah_x_mr.mp3', imgSrc: './img/mr.jpg', imgLink: 'https://www.gettyimages.de/fotos/adolf-hitler' }
+  { title: 'Adolf Hitler x Memory Reboot', src: './music/ah_x_mr.mp3', imgSrc: './img/mr.jpg', imgLink: 'https://www.gettyimages.de/fotos/adolf-hitler' }
 ];
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -200,11 +233,15 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   popupCloseButton.addEventListener('click', () => {
-    popupContainer.style.display = 'none';
-    popupAudio.pause();
+    popupContainer.classList.add('popup-closing'); // Add the closing animation class
+    setTimeout(() => {
+      popupContainer.classList.remove('popup-closing');
+      popupContainer.style.display = 'none';
+      popupAudio.pause();
+    }, 300); // Delay the removal of the class and the hiding of the popup slightly
   });
 });
-</script>
 
+</script>
 </body>
 </html>
