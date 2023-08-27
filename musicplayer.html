@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Music Player</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* Additional styling for the pop-up window */
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh; /* Ensures the content spans the full viewport height */
+      margin: 0;
+      background-color: #242424;
+    }
+
+    .h1 {
+      font-size: 24px;
+      color: white;
+      margin-top: 20px; /* Adjust as needed */
+    }
+
+    .tracks-container {
+      text-align: center;
+    }
+
+    .popup-container {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.7);
+      z-index: 9999;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .popup {
+      padding: 20px;
+      background-color: black;
+      color: white;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+      border-radius: 5px;
+      text-align: center;
+    }
+
+    .popup-trigger {
+      background-color: #007bff;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      margin: 5px;
+      cursor: pointer;
+      border-radius: 5px;
+      font-size: 16px;
+      transition: background-color 0.3s, transform 0.2s;
+    }
+
+    .popup-trigger:hover {
+      background-color: #0056b3;
+      transform: scale(1.05);
+    }
+
+    #popup-close {
+      background-color: #333;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      margin: 10px;
+      cursor: pointer;
+      border-radius: 5px;
+      font-size: 16px;
+      transition: background-color 0.3s, transform 0.2s;
+    }
+
+    #popup-close:hover {
+      background-color: #555;
+      transform: scale(1.05);
+    }
+
+    /* Style the default audio player controls */
+    audio {
+      width: 100%;
+      margin-top: 10px;
+    }
+
+    audio::-webkit-media-controls-panel {
+    background-color: #333; /* Background color of the controls */
+    border-radius: 5px;
+    padding: 10px;
+  }
+
+  audio::-webkit-media-controls-play-button,
+  audio::-webkit-media-controls-pause-button {
+    font-size: 20px;
+    color: #333; /* Play/pause button color */
+    background-color: #007bff; /* Button background color */
+    border: none;
+    border-radius: 50%;
+    padding: 10px;
+    cursor: pointer;
+    margin: 0 5px;
+    transition: background-color 0.3s, transform 0.2s;
+  }
+
+  audio::-webkit-media-controls-play-button:hover,
+  audio::-webkit-media-controls-pause-button:hover {
+    background-color: #0056b3; /* Button background color on hover */
+    transform: scale(1.1);
+  }
+  </style>
+</head>
+<body>
+<h1 class="h1">Goebbels Music</h1>
+
+<div class="tracks-container">
+  <button class="popup-trigger" data-index="0">Joseph Goebbels x hateKrime</button><br>
+  <button class="popup-trigger" data-index="1">Joseph Goebbels x wasted</button><br>
+  <button class="popup-trigger" data-index="2">Joseph Goebbels x Particles</button><br>
+</div>
+
+<h1 class="h1">Hitler Music</h1>
+
+<div class="tracks-container">
+  <button class="popup-trigger" data-index="3">Adolf Hitler x Silhouette</button><br>
+  <button class="popup-trigger" data-index="4">Adolf Hitler x Molly Guitar remix</button><br>
+  <button class="popup-trigger" data-index="5">Adolf Hitler x Psycho Cruise</button><br>
+  <button class="popup-trigger" data-index="6">Adolf Hitler x Devil Eyes</button><br>
+  <button class="popup-trigger" data-index="7">Adolf Hitler x 141 Schneeschieber</button><br>
+  <button class="popup-trigger" data-index="8">Adolf Hitler x Babydoll x The perfect girl</button><br>
+  <button class="popup-trigger" data-index="9">Adolf Hitler x In Essence</button><br>
+  <button class="popup-trigger" data-index="10">Adolf Hitler x Kletka</button><br>
+  <button class="popup-trigger" data-index="11">Adolf Hitler x Memory Reboot</button><br>
+</div>
+
+
+<div class="popup-container" id="popup-container">
+  <div class="popup" id="popup">
+    <a id="popup-album-link" href="#" target="_blank">
+      <img id="popup-album-cover" src="" alt="Album Cover">
+    </a>
+    <h3 id="popup-track-title" class="h3"></h3>
+    <audio id="popup-audio" controls autoplay>
+      Your browser does not support the audio element.
+    </audio>
+    <button id="popup-close">Close</button>
+  </div>
+</div>
+<br>
+<br>
+<a class="h3m" style="text-decoration: none;" href="index.html">&leftarrow; go back</a>
+
+<br><br><br>
+
+<center>
+    <a class="all" href="https://discord.gg/7eAsQkpWdZ">Discord Server</a>
+    <a class="alll" href="https://youtube.com/channel/UCZklbOpPB-6eGxh2NkdjSBg">YouTube</a>
+    <br>
+</center>
+<script>
+const tracks = [
+  { title: 'Joseph Goebbels x hateKrime', src: './musicc/jg_x_hatekrime.mp3', imgSrc: './img/hatekrime.jpg', imgLink: 'https://www.gettyimages.de/fotos/joseph-goebbels' },
+  { title: 'Joseph Goebbels x wasted', src: './musicc/jg_x_wasted.mp3', imgSrc: './img/wasted.jpg', imgLink: 'https://www.gettyimages.de/fotos/joseph-goebbels' },
+  { title: 'Joseph Goebbels x Particles', src: './musicc/jg_x_particles.mp3', imgSrc: './img/particles.jpg', imgLink: 'https://www.gettyimages.de/fotos/joseph-goebbels' },
+  { title: 'Joseph Goebbels x Silhouette', src: './music/ah_x_silhouette.mp3', imgSrc: './img/silhouette.jpg', imgLink: 'https://www.gettyimages.de/fotos/adolf-hitler' },
+  { title: 'Joseph Goebbels x Molly Guitar remix', src: './music/ah_x_mgr.mp3', imgSrc: './img/mgr.jpg', imgLink: 'https://www.gettyimages.de/fotos/adolf-hitler' },
+  { title: 'Joseph Goebbels x Psycho Cruise', src: './music/ah_x_pc.mp3', imgSrc: './img/pc.jpg', imgLink: 'https://www.gettyimages.de/fotos/adolf-hitler' },
+  { title: 'Joseph Goebbels x Devil Eyes', src: './music/ah_x_de.mp3', imgSrc: './img/de.jpg', imgLink: 'https://www.gettyimages.de/fotos/adolf-hitler' },
+  { title: 'Joseph Goebbels x 141 Schneeschieber', src: './music/ah_x_141s.mp3', imgSrc: './img/141s.jpg', imgLink: 'https://www.gettyimages.de/fotos/adolf-hitler' },
+  { title: 'Joseph Goebbels x Babydoll x The perfect girl', src: './music/ah_x_bxtpg.mp3', imgSrc: './img/bxtpg.jpg', imgLink: 'https://www.gettyimages.de/fotos/adolf-hitler' },
+  { title: 'Joseph Goebbels x In Essence', src: './music/ah_x_ie.mp3', imgSrc: './img/ie.jpg', imgLink: 'https://www.gettyimages.de/fotos/adolf-hitler' },
+  { title: 'Joseph Goebbels x Kletka', src: './music/ah_x_kletka.mp3', imgSrc: './img/kletka.jpg', imgLink: 'https://www.gettyimages.de/fotos/adolf-hitler' },
+  { title: 'Joseph Goebbels x Kletka', src: './music/ah_x_mr.mp3', imgSrc: './img/mr.jpg', imgLink: 'https://www.gettyimages.de/fotos/adolf-hitler' }
+];
+
+document.addEventListener('DOMContentLoaded', () => {
+  const popupTriggerButtons = document.querySelectorAll('.popup-trigger');
+  const popupContainer = document.getElementById('popup-container');
+  const popupAlbumLink = document.getElementById('popup-album-link'); // Added this line
+  const popupAlbumCover = document.getElementById('popup-album-cover');
+  const popupTrackTitle = document.getElementById('popup-track-title');
+  const popupAudio = document.getElementById('popup-audio');
+  const popupCloseButton = document.getElementById('popup-close');
+
+  popupTriggerButtons.forEach(button => {
+    button.addEventListener('click', event => {
+      event.preventDefault();
+      const index = event.target.getAttribute('data-index');
+      popupAlbumLink.href = tracks[index].imgLink; // Set the image link URL
+      popupAlbumCover.src = tracks[index].imgSrc;
+      popupTrackTitle.textContent = tracks[index].title;
+      popupAudio.src = tracks[index].src;
+      popupContainer.style.display = 'flex';
+    });
+  });
+
+  popupCloseButton.addEventListener('click', () => {
+    popupContainer.style.display = 'none';
+    popupAudio.pause();
+  });
+});
+</script>
+
+</body>
+</html>
