@@ -79,7 +79,7 @@ a:hover {
 }
 
 .div3 {
-    background-color: white;
+    background-color: #15b815;
     width: 77px;
     border: solid black;
     padding: 20px;
@@ -102,12 +102,23 @@ a:hover {
     text-decoration: underline;
 }
 
+.h3s {
+    color: black;
+    font-size: 24px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
 .ag {
     color: #0492c2;
     text-align: center;
     text-decoration: none;
     font-size: 20px;
     font-weight: bold;
+}
+
+.ag:hover {
+    text-decoration: underline;
 }
 
 .h3 {
